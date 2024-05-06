@@ -15,13 +15,13 @@ const agencyModel_1 = require("../models/agencyModel");
 const createAgency = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { name, location } = req.body;
-        const images = req.files.map((file) => file.path);
+        const logo = req.files.map((file) => file.path);
         // Check if the agency already exists in the database
         const existingAgency = yield agencyModel_1.Agency.findOne({ name });
         if (existingAgency) {
             return res.status(400).json({ status: 400, message: "Agency already in use" });
         }
-        const agency = new agencyModel_1.Agency({ name, location, images });
+        const agency = new agencyModel_1.Agency({ name, location, logo });
         const savedAgency = yield agency.save();
         res.status(201).json(savedAgency);
     }
@@ -35,13 +35,13 @@ exports.createAgency = createAgency;
 const updateAgency = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { name, location } = req.body;
-        const images = req.files.map((file) => file.path);
+        const logo = req.files.map((file) => file.path);
         // Check if the agency already exists in the database
         const existingAgency = yield agencyModel_1.Agency.findOne({ name });
         if (existingAgency) {
             return res.status(400).json({ status: 400, message: "Agency already in use" });
         }
-        const updatedCar = yield agencyModel_1.Agency.findByIdAndUpdate(req.params.id, { name, location, images }, { new: true });
+        const updatedCar = yield agencyModel_1.Agency.findByIdAndUpdate(req.params.id, { name, location, logo }, { new: true });
         if (!updatedCar) {
             return res.status(404).json({ error: 'Agency not found' });
         }

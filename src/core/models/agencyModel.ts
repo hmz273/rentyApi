@@ -10,7 +10,7 @@ const AgencySchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    images: {
+    logo: {
       type: [Buffer], // Array of image buffers
       required: true,
   },

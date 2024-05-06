@@ -5,7 +5,7 @@ import { Agency } from '../models/agencyModel';
 export const createAgency = async (req: Request, res: Response) => {
     try {
         const { name, location } = req.body;
-        const images = (req.files as Express.Multer.File[]).map((file: Express.Multer.File) => file.path);
+        const logo = (req.files as Express.Multer.File[]).map((file: Express.Multer.File) => file.path);
 
         // Check if the agency already exists in the database
         const existingAgency = await Agency.findOne({ name });
@@ -13,7 +13,7 @@ export const createAgency = async (req: Request, res: Response) => {
             return res.status(400).json({ status: 400, message: "Agency already in use" });
         }
 
-        const agency = new Agency({ name, location, images });
+        const agency = new Agency({ name, location, logo });
         const savedAgency = await agency.save();
         res.status(201).json(savedAgency);
     } catch (error) {
@@ -26,7 +26,7 @@ export const createAgency = async (req: Request, res: Response) => {
 export const updateAgency = async (req: Request, res: Response) => {
     try {
         const { name, location } = req.body;
-        const images = (req.files as Express.Multer.File[]).map((file: Express.Multer.File) => file.path);
+        const logo = (req.files as Express.Multer.File[]).map((file: Express.Multer.File) => file.path);
         
         // Check if the agency already exists in the database
         const existingAgency = await Agency.findOne({ name });
@@ -36,7 +36,7 @@ export const updateAgency = async (req: Request, res: Response) => {
 
         const updatedCar = await Agency.findByIdAndUpdate(
             req.params.id,
-            { name, location, images },
+            { name, location, logo },
             { new: true }
         );
         if (!updatedCar) {
