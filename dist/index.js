@@ -37,7 +37,7 @@ app.get("/", (req, res) => {
 });
 // Listen the server
 app.listen(PORT, () => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(`🗄️  Server Fire on http:localhost//${PORT}`);
+    console.log(`🗄️  Server Fire on http:localhost:${PORT}`);
     // Connect To The Database
     try {
         yield mongoose_1.default.connect(process.env.DATABASE_URL);

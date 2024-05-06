@@ -32,7 +32,7 @@ app.get("/", (req, res) => {
 
 // Listen the server
 app.listen(PORT, async () => {
-  console.log(`🗄️  Server Fire on http:localhost//${PORT}`);
+  console.log(`🗄️  Server Fire on http:localhost:${PORT}`);
 
   // Connect To The Database
   try {
